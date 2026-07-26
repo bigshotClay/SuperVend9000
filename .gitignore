@@ -29,3 +29,6 @@ docs/generated/*.log
 
 # Local trash — decluttered artifacts, never published
 .trash/
+
+# arXiv upload bundle (regenerable build artifact)
+docs/arxiv/arxiv-upload.tar.gz
