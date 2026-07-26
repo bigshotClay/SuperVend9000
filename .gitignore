@@ -1,0 +1,28 @@
+.gradle/
+build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+.idea/
+*.iml
+.DS_Store
+local.properties
+
+# Run artifacts (each run is a self-contained SQLite file + artifact tree)
+runs/
+*.db
+*.db-journal
+*.db-wal
+
+# Large data artifacts — distributed as a GitHub Release asset, not committed
+reproducibility-package/dbs/
+*.zip
+
+# Local editor / tool state
+.claude/
+.kotlin/
+
+# Internal process & ops docs — kept local, not published
+docs/SPEND-ACCOUNTING.md
+docs/RESEARCH-GRADE-REVISION-PLAN.md
+docs/OPERATOR-INPUT.md
+docs/generated/*.log

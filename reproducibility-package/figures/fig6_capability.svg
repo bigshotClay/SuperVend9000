@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="420" font-family="system-ui,Arial,sans-serif" font-size="12">
+<rect width="660" height="420" fill="white"/>
+<text x="330.0" y="19" text-anchor="middle" font-size="13.5" font-weight="600">Capability gradient — bare-arm net worth by model tier (exploratory)</text>
+<line x1="74" y1="30" x2="74" y2="364" stroke="#333"/>
+<line x1="69" y1="359.3" x2="74" y2="359.3" stroke="#333"/>
+<text x="65" y="363.3" text-anchor="end" fill="#333">0</text>
+<line x1="69" y1="242.6" x2="74" y2="242.6" stroke="#333"/>
+<text x="65" y="246.6" text-anchor="end" fill="#333">1000</text>
+<line x1="69" y1="125.8" x2="74" y2="125.8" stroke="#333"/>
+<text x="65" y="129.8" text-anchor="end" fill="#333">2000</text>
+<text x="16" y="197.0" text-anchor="middle" transform="rotate(-90 16 197.0)">bare mean net worth ($)</text>
+<line x1="74" y1="359.3" x2="636" y2="359.3" stroke="#999" stroke-dasharray="3 3"/>
+<rect x="116.1" y="349.3" width="103.0" height="10.1" fill="#b23b3b"/>
+<text x="167.7" y="343.3" text-anchor="middle" font-size="12">$86</text>
+<text x="167.7" y="382.0" text-anchor="middle" font-weight="600" font-size="11.5">gemma3:4b</text>
+<text x="167.7" y="396.0" text-anchor="middle" fill="#777" font-size="10">100% fail</text>
+<rect x="303.5" y="339.3" width="103.0" height="20.0" fill="#a8722a"/>
+<text x="355.0" y="333.3" text-anchor="middle" font-size="12">$171</text>
+<text x="355.0" y="382.0" text-anchor="middle" font-weight="600" font-size="11.5">qwen2.5:7b</text>
+<text x="355.0" y="396.0" text-anchor="middle" fill="#777" font-size="10">100% fail</text>
+<rect x="490.8" y="73.0" width="103.0" height="286.4" fill="#2f7d6b"/>
+<text x="542.3" y="67.0" text-anchor="middle" font-size="12">$2452</text>
+<text x="542.3" y="382.0" text-anchor="middle" font-weight="600" font-size="11.5">deepseek-v4-flash</text>
+<text x="542.3" y="396.0" text-anchor="middle" fill="#777" font-size="10">50% fail</text>
+</svg>

@@ -1,0 +1,30 @@
+====================================================================
+SIM INTEGRITY — the gemma three-arm must share one sim_config_sha
+  distinct shas across full/scripts/bare: ['64fa1ff51ad3']
+  -> PASS: single sim, paired comparisons valid
+====================================================================
+
+CORE THREE-ARM (gemma3:4b, N=100, matched seeds)
+  bare (model only)        N=100  mean=$      86  median=$      83  fail=100%
+  scripts (fundamentals)   N=100  mean=$     735  median=$      29  fail= 59%
+  full (harness+model)     N=100  mean=$    1725  median=$    1415  fail= 46%
+  paired (matched seeds):
+  full - bare     +$  1639/seed  median +$  1364  t= 8.30  McNemar 54/0  ~7.2sigma  (n=100)
+  scripts - bare  +$   649/seed  median +$   -38  t= 5.80  McNemar 41/0  ~6.2sigma  (n=100)
+  full - scripts  +$   990/seed  median +$   386  t= 7.50  McNemar 16/3  ~2.8sigma  (n=100)
+  note: full-scripts is decisive on net worth (t high) but only ~3sigma on failure rate.
+
+CAPABILITY GRADIENT (bare arm, across model tiers — all sim 64fa1ff5)
+  gemma3:4b          N=100  mean=$      86  median=$      83  fail=100%
+  qwen2.5:7b         N= 51  mean=$     171  median=$     152  fail=100%
+  deepseek-v4-flash  N= 10  mean=$    2452  median=$     971  fail= 50%
+
+HARNESS ON A CAPABLE MODEL (deepseek-v4-flash, paired seeds)
+  bare (no harness)  N= 10  mean=$    2452  median=$     971  fail= 50%
+  full (harness)     N= 10  mean=$    6060  median=$    6749  fail= 10%
+  paired full-bare: +$3607/seed  median +$4075  t=2.48  McNemar 4/0  full ahead 8/10  (n=10)
+  -> full beats bare on net worth AND failure rate: the harness helps even the strong model.
+
+SUPPORTING LONG-HORIZON EXPERIMENTS
+  live model-vs-model vendor runs  N=3  mean=$30119  median=$13680  fail=0%  seeds=[16, 23, 39]
+  durability (toward 3,000-day cap) N=5  mean=$9226  median=$12780  fail=40%

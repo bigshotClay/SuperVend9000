@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="420" font-family="system-ui,Arial,sans-serif" font-size="12">
+<rect width="660" height="420" fill="white"/>
+<text x="330.0" y="20" text-anchor="middle" font-size="14" font-weight="600">Outcome transition: scripts &#8594; full (N=100 matched seeds)</text>
+<text x="330.0" y="38" text-anchor="middle" font-size="11" fill="#666">cell = seeds; green = improved, red = regressed, grey = unchanged</text>
+<text x="364" y="62" text-anchor="middle" font-size="12" font-weight="600">outcome under full &#8594;</text>
+<text x="276" y="82" text-anchor="middle" font-weight="600">dead</text>
+<text x="364" y="82" text-anchor="middle" font-weight="600">broke</text>
+<text x="452" y="82" text-anchor="middle" font-weight="600">thriving</text>
+<text x="174" y="224" text-anchor="middle" font-size="12" font-weight="600" transform="rotate(-90 174 224)">under scripts &#8594;</text>
+<text x="220" y="140" text-anchor="end" font-weight="600">dead</text>
+<text x="220" y="228" text-anchor="end" font-weight="600">broke</text>
+<text x="220" y="316" text-anchor="end" font-weight="600">thriving</text>
+<rect x="232" y="92" width="88" height="88" fill="#6b7280" fill-opacity="1.000" stroke="#ccc"/>
+<text x="276" y="143" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">38</text>
+<rect x="320" y="92" width="88" height="88" fill="#2f7d6b" fill-opacity="0.202" stroke="#ccc"/>
+<text x="364" y="143" text-anchor="middle" font-size="20" font-weight="700" fill="#222">1</text>
+<rect x="408" y="92" width="88" height="88" fill="#2f7d6b" fill-opacity="0.353" stroke="#ccc"/>
+<text x="452" y="143" text-anchor="middle" font-size="20" font-weight="700" fill="#222">8</text>
+<rect x="232" y="180" width="88" height="88" fill="#b23b3b" fill-opacity="0.245" stroke="#ccc"/>
+<text x="276" y="231" text-anchor="middle" font-size="20" font-weight="700" fill="#222">3</text>
+<rect x="320" y="180" width="88" height="88" fill="#6b7280" fill-opacity="0.202" stroke="#ccc"/>
+<text x="364" y="231" text-anchor="middle" font-size="20" font-weight="700" fill="#222">1</text>
+<rect x="408" y="180" width="88" height="88" fill="#2f7d6b" fill-opacity="0.353" stroke="#ccc"/>
+<text x="452" y="231" text-anchor="middle" font-size="20" font-weight="700" fill="#222">8</text>
+<rect x="232" y="268" width="88" height="88" fill="#b23b3b" fill-opacity="0.245" stroke="#ccc"/>
+<text x="276" y="319" text-anchor="middle" font-size="20" font-weight="700" fill="#222">3</text>
+<rect x="320" y="268" width="88" height="88" fill="#b23b3b" fill-opacity="0.000" stroke="#ccc"/>
+<rect x="408" y="268" width="88" height="88" fill="#6b7280" fill-opacity="1.000" stroke="#ccc"/>
+<text x="452" y="319" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">38</text>
+<text x="512" y="140" text-anchor="start" fill="#555">47</text>
+<text x="512" y="228" text-anchor="start" fill="#555">12</text>
+<text x="512" y="316" text-anchor="start" fill="#555">41</text>
+<text x="276" y="376" text-anchor="middle" fill="#555">44</text>
+<text x="364" y="376" text-anchor="middle" fill="#555">2</text>
+<text x="452" y="376" text-anchor="middle" fill="#555">54</text>
+<text x="512" y="82" text-anchor="start" font-size="10" fill="#888">row &#931;</text>
+<text x="220" y="376" text-anchor="end" font-size="10" fill="#888">col &#931;</text>
+</svg>

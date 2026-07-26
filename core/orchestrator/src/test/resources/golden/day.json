@@ -1,0 +1,362 @@
+{
+    "counterTrace": [
+        {
+            "runId": "golden",
+            "day": 0,
+            "stepIndex": 0,
+            "stepId": "BOOT-01",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 0,
+            "stepIndex": 1,
+            "stepId": "BOOT-02",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 0,
+            "stepIndex": 2,
+            "stepId": "BOOT-03",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 0,
+            "stepIndex": 3,
+            "stepId": "BOOT-04",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 0,
+            "stepIndex": 4,
+            "stepId": "BOOT-05",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 0,
+            "stepIndex": 5,
+            "stepId": "BOOT-06",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 0,
+            "stepIndex": 6,
+            "stepId": "BOOT-07",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 0,
+            "stepIndex": 7,
+            "stepId": "BOOT-08",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 0,
+            "stepIndex": 8,
+            "stepId": "BOOT-09",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 0,
+            "stepId": "RCV-01",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 1,
+            "stepId": "RCV-02",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 2,
+            "stepId": "RCV-03",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 3,
+            "stepId": "OPS-01",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 4,
+            "stepId": "OPS-02",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 5,
+            "stepId": "OPS-03",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 6,
+            "stepId": "OPS-04",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 7,
+            "stepId": "OPS-05",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 8,
+            "stepId": "COM-01",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 9,
+            "stepId": "COM-02",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 10,
+            "stepId": "PRO-01",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 11,
+            "stepId": "PRO-02",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 12,
+            "stepId": "PRO-03",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 13,
+            "stepId": "PRO-04",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 14,
+            "stepId": "PRO-05",
+            "status": "SKIPPED"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 15,
+            "stepId": "PRC-01",
+            "status": "SKIPPED"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 16,
+            "stepId": "PRC-02",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 17,
+            "stepId": "TSK-01",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 18,
+            "stepId": "CLS-01",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 19,
+            "stepId": "CLS-02",
+            "status": "SUCCESS"
+        },
+        {
+            "runId": "golden",
+            "day": 1,
+            "stepIndex": 20,
+            "stepId": "CLS-03",
+            "status": "SUCCESS"
+        }
+    ],
+    "gateLog": [
+        {
+            "day": 1,
+            "stepId": "BOOT-06",
+            "actor": "OrderClerk",
+            "actionType": "PLACE_ORDER",
+            "gateId": "SpecBeforePay",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "BOOT-06",
+            "actor": "OrderClerk",
+            "actionType": "PLACE_ORDER",
+            "gateId": "ValidatedPayee",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "BOOT-06",
+            "actor": "OrderClerk",
+            "actionType": "PLACE_ORDER",
+            "gateId": "SpendCap",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "BOOT-07",
+            "actor": "Bookkeeper",
+            "actionType": "WRITE_CASH_LEDGER",
+            "gateId": "LedgerConsistency",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "BOOT-08",
+            "actor": "PriceSetter",
+            "actionType": "SET_PRICE",
+            "gateId": "MarginFloor",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "RCV-02",
+            "actor": "Bookkeeper",
+            "actionType": "WRITE_INVENTORY_LEDGER",
+            "gateId": "LedgerConsistency",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "OPS-02",
+            "actor": "Bookkeeper",
+            "actionType": "WRITE_CASH_LEDGER",
+            "gateId": "LedgerConsistency",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "OPS-05",
+            "actor": "Bookkeeper",
+            "actionType": "WRITE_INVENTORY_LEDGER",
+            "gateId": "LedgerConsistency",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "PRO-03",
+            "actor": "OrderClerk",
+            "actionType": "PLACE_ORDER",
+            "gateId": "SpecBeforePay",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "PRO-03",
+            "actor": "OrderClerk",
+            "actionType": "PLACE_ORDER",
+            "gateId": "ValidatedPayee",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "PRO-03",
+            "actor": "OrderClerk",
+            "actionType": "PLACE_ORDER",
+            "gateId": "SpendCap",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "PRO-04",
+            "actor": "Bookkeeper",
+            "actionType": "WRITE_CASH_LEDGER",
+            "gateId": "LedgerConsistency",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        },
+        {
+            "day": 1,
+            "stepId": "PRC-02",
+            "actor": "PriceSetter",
+            "actionType": "SET_PRICE",
+            "gateId": "MarginFloor",
+            "allowed": true,
+            "reason": "",
+            "expected": "",
+            "observed": ""
+        }
+    ],
+    "incidentLog": [],
+    "recoveryLog": [],
+    "stallResets": []
+}

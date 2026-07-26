@@ -1,0 +1,1506 @@
+{
+    "name": "Master Workplan v1",
+    "bootstrap": [
+        {
+            "id": "BOOT-01",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "PriceSetter",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "AssortmentPlan",
+            "validator": {
+                "id": "AssortmentPlan",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "BOOT-02",
+                "BOOT-03"
+            ]
+        },
+        {
+            "id": "BOOT-02",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "MarketResearcher",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "BOOT-01",
+                        "schema": "AssortmentPlan"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "BOOT-01",
+                    "schema": "AssortmentPlan"
+                }
+            ],
+            "outputSchema": "ReferencePrice",
+            "validator": {
+                "id": "ReferencePrice",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "BOOT-04"
+            ]
+        },
+        {
+            "id": "BOOT-03",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "SourceScout",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "BOOT-01",
+                        "schema": "AssortmentPlan"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "BOOT-01",
+                    "schema": "AssortmentPlan"
+                }
+            ],
+            "outputSchema": "SourceList",
+            "validator": {
+                "id": "SourceList",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "BOOT-05"
+            ]
+        },
+        {
+            "id": "BOOT-04",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "ElasticityAnalyst",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "BOOT-02",
+                        "schema": "ReferencePrice"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "BOOT-02",
+                    "schema": "ReferencePrice"
+                }
+            ],
+            "outputSchema": "PriceBand",
+            "validator": {
+                "id": "PriceBand",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "BOOT-05",
+                "BOOT-08"
+            ]
+        },
+        {
+            "id": "BOOT-05",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "NegotiationLoop",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "SEND_EMAIL"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "BOOT-03",
+                        "schema": "SourceList"
+                    }
+                },
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "BOOT-04",
+                        "schema": "PriceBand"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "BOOT-03",
+                    "schema": "SourceList"
+                },
+                {
+                    "producingStep": "BOOT-04",
+                    "schema": "PriceBand"
+                }
+            ],
+            "outputSchema": "NegotiationOutcome",
+            "validator": {
+                "id": "NegotiationOutcome",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "QuoteSanity",
+                "ConcessionPolicy"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "BOOT-06"
+            ]
+        },
+        {
+            "id": "BOOT-06",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "OrderClerk",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "PLACE_ORDER"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.CashAtLeast",
+                    "amount": 0
+                }
+            ],
+            "inputs": [],
+            "outputSchema": "PurchaseOrder",
+            "validator": {
+                "id": "PurchaseOrder",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "SpecBeforePay",
+                "ValidatedPayee",
+                "SpendCap"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "BOOT-07"
+            ]
+        },
+        {
+            "id": "BOOT-07",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "Bookkeeper",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "WRITE_CASH_LEDGER"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "BOOT-06",
+                        "schema": "PurchaseOrder"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "BOOT-06",
+                    "schema": "PurchaseOrder"
+                }
+            ],
+            "outputSchema": "CashLedgerEntries",
+            "validator": {
+                "id": "CashLedgerEntries",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "LedgerConsistency"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "BOOT-08",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "PriceSetter",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "SET_PRICE"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "BOOT-04",
+                        "schema": "PriceBand"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "BOOT-04",
+                    "schema": "PriceBand"
+                }
+            ],
+            "outputSchema": "PriceBook",
+            "validator": {
+                "id": "PriceBook",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "MarginFloor"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "BOOT-09",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "Scribe",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "DayZeroSummary",
+            "validator": {
+                "id": "DayZeroSummary",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": []
+        }
+    ],
+    "dailyLoop": [
+        {
+            "id": "RCV-01",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "ReceivingClerk",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.NoOpenBlockingIncidents",
+                    "scope": "LEDGER"
+                }
+            ],
+            "inputs": [],
+            "outputSchema": "DeliveryMatchReport",
+            "validator": {
+                "id": "DeliveryMatchReport",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "RCV-02"
+            ]
+        },
+        {
+            "id": "RCV-02",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "Bookkeeper",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "WRITE_INVENTORY_LEDGER"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "RCV-01",
+                        "schema": "DeliveryMatchReport"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "RCV-01",
+                    "schema": "DeliveryMatchReport"
+                }
+            ],
+            "outputSchema": "InventoryLedgerEntries",
+            "validator": {
+                "id": "InventoryLedgerEntries",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "LedgerConsistency"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "RCV-03",
+            "phase": "RECEIVE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "ReceivingClerk",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "SUBMIT_TASK"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "OrderAgingReport",
+            "validator": {
+                "id": "OrderAgingReport",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "OPS-01",
+            "phase": "OPS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "MachineAttendant",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "COLLECT_CASH"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "CashCollection",
+            "validator": {
+                "id": "CashCollection",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "OPS-02"
+            ]
+        },
+        {
+            "id": "OPS-02",
+            "phase": "OPS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "Bookkeeper",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "WRITE_CASH_LEDGER"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "OPS-01",
+                        "schema": "CashCollection"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "OPS-01",
+                    "schema": "CashCollection"
+                }
+            ],
+            "outputSchema": "CashLedgerEntries",
+            "validator": {
+                "id": "CashLedgerEntries",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "LedgerConsistency"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "OPS-03",
+            "phase": "OPS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "RestockPlanner",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "MoveList",
+            "validator": {
+                "id": "MoveList",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "OPS-04"
+            ]
+        },
+        {
+            "id": "OPS-04",
+            "phase": "OPS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "MachineAttendant",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "MOVE_INVENTORY"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "OPS-03",
+                        "schema": "MoveList"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "OPS-03",
+                    "schema": "MoveList"
+                }
+            ],
+            "outputSchema": "RestockResult",
+            "validator": {
+                "id": "RestockResult",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "OPS-05"
+            ]
+        },
+        {
+            "id": "OPS-05",
+            "phase": "OPS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "Bookkeeper",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "WRITE_INVENTORY_LEDGER"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "OPS-04",
+                        "schema": "RestockResult"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "OPS-04",
+                    "schema": "RestockResult"
+                }
+            ],
+            "outputSchema": "InventoryLedgerEntries",
+            "validator": {
+                "id": "InventoryLedgerEntries",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "LedgerConsistency"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "COM-01",
+            "phase": "COMMS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "MailSorter",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "RoutingVerdict",
+            "validator": {
+                "id": "RoutingVerdict",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": [
+                "COM-02"
+            ]
+        },
+        {
+            "id": "COM-02",
+            "phase": "COMMS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "QuoteExtractor",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "COM-01",
+                        "schema": "RoutingVerdict"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "COM-01",
+                    "schema": "RoutingVerdict"
+                }
+            ],
+            "outputSchema": "Quote",
+            "validator": {
+                "id": "Quote",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "PRO-01",
+            "phase": "PROCURE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "RestockPlanner",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.LedgerReconciled",
+                    "ledger": "inventory",
+                    "asOfDay": -1
+                }
+            ],
+            "inputs": [],
+            "outputSchema": "ReorderNeeds",
+            "validator": {
+                "id": "ReorderNeeds",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "PRO-02"
+            ]
+        },
+        {
+            "id": "PRO-02",
+            "phase": "PROCURE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "NegotiationLoop",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "SEND_EMAIL"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "PRO-01",
+                        "schema": "ReorderNeeds"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "PRO-01",
+                    "schema": "ReorderNeeds"
+                }
+            ],
+            "outputSchema": "NegotiationOutcome",
+            "validator": {
+                "id": "NegotiationOutcome",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "QuoteSanity",
+                "ConcessionPolicy"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": [
+                "PRO-03"
+            ]
+        },
+        {
+            "id": "PRO-03",
+            "phase": "PROCURE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "OrderClerk",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "PLACE_ORDER"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.CashAtLeast",
+                    "amount": 0
+                }
+            ],
+            "inputs": [],
+            "outputSchema": "PurchaseOrder",
+            "validator": {
+                "id": "PurchaseOrder",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "SpecBeforePay",
+                "ValidatedPayee",
+                "SpendCap"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "PRO-04"
+            ]
+        },
+        {
+            "id": "PRO-04",
+            "phase": "PROCURE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "Bookkeeper",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "WRITE_CASH_LEDGER"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "PRO-03",
+                        "schema": "PurchaseOrder"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "PRO-03",
+                    "schema": "PurchaseOrder"
+                }
+            ],
+            "outputSchema": "CashLedgerEntries",
+            "validator": {
+                "id": "CashLedgerEntries",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "LedgerConsistency"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "PRO-05",
+            "phase": "PROCURE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "SourceScout",
+                "firesOnlyOnTask": true
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "SourceList",
+            "validator": {
+                "id": "SourceList",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "PRC-01",
+            "phase": "PRICE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "ElasticityAnalyst",
+                "firesOnlyOnTask": true
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "ElasticityUpdate",
+            "validator": {
+                "id": "ElasticityUpdate",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": [
+                "PRC-02"
+            ]
+        },
+        {
+            "id": "PRC-02",
+            "phase": "PRICE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "PriceSetter",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "SET_PRICE"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "PRC-01",
+                        "schema": "ElasticityUpdate"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "PRC-01",
+                    "schema": "ElasticityUpdate"
+                }
+            ],
+            "outputSchema": "PriceBookUpdate",
+            "validator": {
+                "id": "PriceBookUpdate",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "MarginFloor"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "TSK-01",
+            "phase": "TASKS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "TaskDispatcher",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "SUBMIT_TASK"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "TaskDrainReport",
+            "validator": {
+                "id": "TaskDrainReport",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "TaskMandate"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "CLS-01",
+            "phase": "CLOSE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "Reconciler",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "WRITE_RECOVERY_ANNOTATION"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "ReconciliationReport",
+            "validator": {
+                "id": "ReconciliationReport",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "RecoveryWrite"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "CLS-02",
+                "CLS-03"
+            ]
+        },
+        {
+            "id": "CLS-02",
+            "phase": "CLOSE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "Scribe",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "CLS-01",
+                        "schema": "ReconciliationReport"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "CLS-01",
+                    "schema": "ReconciliationReport"
+                }
+            ],
+            "outputSchema": "DailySummary",
+            "validator": {
+                "id": "DailySummary",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "CLS-03",
+            "phase": "CLOSE",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "SystemScript",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "CLS-01",
+                        "schema": "ReconciliationReport"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "CLS-01",
+                    "schema": "ReconciliationReport"
+                }
+            ],
+            "outputSchema": "MetricsSnapshot",
+            "validator": {
+                "id": "MetricsSnapshot",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": []
+        }
+    ],
+    "weeklyAudit": [
+        {
+            "id": "AUD-01",
+            "phase": "TASKS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "Reconciler",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "WeeklyReport",
+            "validator": {
+                "id": "WeeklyReport",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": [
+                "AUD-02"
+            ]
+        },
+        {
+            "id": "AUD-02",
+            "phase": "TASKS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "WeeklyAuditor",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "PROPOSE_AMENDMENT"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "AUD-01",
+                        "schema": "WeeklyReport"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "AUD-01",
+                    "schema": "WeeklyReport"
+                }
+            ],
+            "outputSchema": "AmendmentProposal",
+            "validator": {
+                "id": "AmendmentProposal",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [
+                "TaskMandate"
+            ],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": [
+                "AUD-03"
+            ]
+        },
+        {
+            "id": "AUD-03",
+            "phase": "TASKS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "SystemScript",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [
+                    "APPLY_AMENDMENT"
+                ],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [
+                {
+                    "type": "dev.supervend.model.Predicate.ArtifactValidated",
+                    "binding": {
+                        "producingStep": "AUD-02",
+                        "schema": "AmendmentProposal"
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "producingStep": "AUD-02",
+                    "schema": "AmendmentProposal"
+                }
+            ],
+            "outputSchema": "PlanVersionUpdate",
+            "validator": {
+                "id": "PlanVersionUpdate",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "BLOCKING",
+            "consumers": []
+        },
+        {
+            "id": "AUD-04",
+            "phase": "TASKS",
+            "kind": {
+                "type": "dev.supervend.plan.StepKind.PersonaStep",
+                "roleRef": "SystemScript",
+                "firesOnlyOnTask": false
+            },
+            "mandate": {
+                "allowed": [],
+                "bounds": {
+                    "maxSpendPerOrder": 9223372036854775807,
+                    "maxSpendPerDay": 9223372036854775807,
+                    "maxPriceChangeBps": 9223372036854775807,
+                    "maxOutboundEmails": 2147483647
+                }
+            },
+            "preconditions": [],
+            "inputs": [],
+            "outputSchema": "EscalationAddendum",
+            "validator": {
+                "id": "EscalationAddendum",
+                "version": {
+                    "major": 1,
+                    "minor": 0,
+                    "patch": 0
+                }
+            },
+            "gates": [],
+            "retryBudget": 2,
+            "severityOnExhaustion": "NON_BLOCKING",
+            "consumers": []
+        }
+    ]
+}
