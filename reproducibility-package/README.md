@@ -1,7 +1,23 @@
 # Reproducibility package — Weak-Model Vending-Bench Harness
 
-Raw run databases behind every number in the paper, plus a single stdlib script that regenerates
-them. Nothing is precomputed by hand.
+Raw run databases behind every number in the paper, plus stdlib scripts that regenerate them.
+Nothing is precomputed by hand.
+
+## Get the data
+
+The databases are **not** committed to git (too large). They ship as a release asset:
+
+- **[`data-v1` release](https://github.com/bigshotClay/SuperVend9000/releases/tag/data-v1)** → `supervend9000-reproducibility-data-v1.zip` (679 DBs, 50 MB).
+
+Extract it **at the repository root** so the DBs land where the scripts expect:
+
+```
+unzip supervend9000-reproducibility-data-v1.zip -d .
+```
+
+This populates `reproducibility-package/dbs/*.db` (core three-arm + exploratory) and
+`runs/r1a-box/`, `runs/r1b-box/`, `runs/r5-box/` (the §5.4 ablations, read by `verify_r1.py`
+and `verify_r5.py`). Verify integrity with `shasum -a 256 -c CHECKSUMS.sha256`.
 
 ## Reproduce
 

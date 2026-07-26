@@ -26,3 +26,6 @@ docs/SPEND-ACCOUNTING.md
 docs/RESEARCH-GRADE-REVISION-PLAN.md
 docs/OPERATOR-INPUT.md
 docs/generated/*.log
+
+# Local trash — decluttered artifacts, never published
+.trash/

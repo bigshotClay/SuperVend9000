@@ -16,15 +16,16 @@ A deterministic **harness** — externalized state, one-directional gates, valid
 
 ## Reproduce it yourself
 
-The raw run databases (300 SQLite files, one per run) ship as a **[release asset](../../releases)** — `vending-harness-reproducibility.zip`. No third-party Python needed:
+The raw run databases (679 SQLite files, one per run — the core three arms, the R1a/R1b/R5 ablations, and the exploratory studies) ship as a **[release asset](https://github.com/bigshotClay/SuperVend9000/releases/tag/data-v1)** — `supervend9000-reproducibility-data-v1.zip`. No third-party Python needed:
 
 ```bash
-# download vending-harness-reproducibility.zip from the Releases page, then:
-unzip vending-harness-reproducibility.zip
-python3 compute_results.py dbs
+# download supervend9000-reproducibility-data-v1.zip from the data-v1 release, then
+# extract AT THE REPO ROOT so the DBs land where the scripts expect them:
+unzip supervend9000-reproducibility-data-v1.zip -d .
+python3 reproducibility-package/compute_results.py reproducibility-package/dbs
 ```
 
-It prints a **sim-integrity check first** (every run must share one `sim_config_sha`), then regenerates the table and every paired statistic from the DBs. The committed [`reproducibility-package/RESULTS.txt`](reproducibility-package/) is the expected output — diff your run against it. `CHECKSUMS.sha256` covers every DB.
+It prints a **sim-integrity check first** (every run must share one `sim_config_sha`), then regenerates the table and every paired statistic from the DBs. The committed [`reproducibility-package/RESULTS.txt`](reproducibility-package/) is the expected output — diff your run against it. The bundle ships a `CHECKSUMS.sha256` covering every DB and a `DATA-README.md` with the full per-arm layout and the ablation-script commands (`verify_r1.py`, `verify_r5.py`, `verify_revision.py`).
 
 ## What's here
 
