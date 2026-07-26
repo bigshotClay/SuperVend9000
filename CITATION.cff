@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Ablating Persistent Structured State Collapses a Weak-Model Scaffolding Harness: A Seed-Matched Component Study"
+authors:
+  - family-names: Pierce
+    given-names: Clayton
+    email: bamer78@gmail.com
+    affiliation: "Independent Researcher"
+type: software
+license: CC-BY-4.0
+repository-code: "https://github.com/bigshotClay/SuperVend9000"
+url: "https://github.com/bigshotClay/SuperVend9000"
+keywords:
+  - large language models
+  - LLM agents
+  - agent scaffolding
+  - long-horizon agents
+  - Vending-Bench
+  - ablation study
+  - reproducibility
+  - external memory
+abstract: >-
+  A seed-matched component-ablation study testing which part of a scaffolding
+  harness lets a weak 4-billion-parameter language model (gemma3:4b) succeed on a
+  200-day business-operations simulator with Vending-Bench economics. Across
+  N=100 matched seeds, a naive one-call-per-day model baseline fails 100% of
+  runs, a deterministic scripted policy 59%, and the full harness 46%. Removing
+  persistent structured state collapses performance to 100% failure (below the
+  naive baseline), while removing the rarely-binding financial gates does not
+  measurably change median performance or failure rate. A seat-level ablation
+  identifies model-mediated pricing as a necessary contributor to the harness's
+  advantage. Includes the paper, the Kotlin/JVM harness, and stdlib
+  reproducibility scripts; the raw run databases ship as a release asset.
